@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: java-servlet-app
+    env: docker
+    region: singapore
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    autoDeploy: true
+
