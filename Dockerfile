@@ -1,8 +1,8 @@
-FROM tomcat:9.0-jdk17
+FROM tomcat:9.0-jdk17-corretto
 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY ./dist/dataweb.war /usr/local/tomcat/webapps/ROOT.war
+COPY dist/dataweb.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
