@@ -16,7 +16,8 @@ public class SQLGatewayServlet extends HttpServlet {
         
         try {
     Class.forName("com.mysql.cj.jdbc.Driver");
-    String url = "jdbc:mysql://localhost:3306/murach";
+    String url = "jdbc:mysql://localhost:3306/murach?useSSL=false&serverTimezone=UTC";
+
 
     String user = "murach_user";
     String pass = "sesame";
@@ -38,7 +39,8 @@ public class SQLGatewayServlet extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // connect database
-            String dbURL = "jdbc:mysql://localhost:3306/murach";
+            String dbURL = "jdbc:mysql://localhost:3306/murach?useSSL=false&serverTimezone=UTC";
+
 
             String username = "murach_user";
             String password = "sesame";
