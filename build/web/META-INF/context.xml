@@ -1,2 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/dataweb"/>
+<Context path="/dataweb">
+
+    <Resource 
+        name="jdbc/murach"
+        auth="Container"
+        type="javax.sql.DataSource"
+        
+        username="murach_user"
+        password="sesame"
+
+        driverClassName="com.mysql.cj.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/murach?autoReconnect=true&amp;useSSL=false&amp;serverTimezone=UTC"
+
+        maxTotal="100"
+        maxIdle="30"
+        maxWaitMillis="10000"
+
+        logAbandoned="true"
+        removeAbandonedOnBorrow="true"
+        removeAbandonedTimeout="60"
+    />
+
+</Context>

@@ -5,6 +5,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import javax.servlet.annotation.WebServlet;
+import murach.data.ConnectionPool;
+
 @WebServlet("/sqlGateway")
 public class SQLGatewayServlet extends HttpServlet {
 
@@ -35,54 +37,40 @@ public class SQLGatewayServlet extends HttpServlet {
         String sqlResult = "";
 
         try {
-            // load driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+    ConnectionPool pool = ConnectionPool.getInstance();
+    Connection connection = pool.getConnection();
 
-            // connect database
-            String dbURL = "jdbc:mysql://localhost:3306/murach?useSSL=false&serverTimezone=UTC";
+    Statement statement = connection.createStatement();
 
+    sqlStatement = sqlStatement.trim();
 
-            String username = "murach_user";
-            String password = "sesame";
+    if (sqlStatement.length() >= 6) {
+        String sqlType = sqlStatement.substring(0, 6);
 
-            Connection connection = DriverManager.getConnection(
-                    dbURL, username, password);
+        if (sqlType.equalsIgnoreCase("select")) {
+            ResultSet resultSet = statement.executeQuery(sqlStatement);
+            sqlResult = SQLUtil.getHtmlTable(resultSet);
+            resultSet.close();
+        } else {
+            int i = statement.executeUpdate(sqlStatement);
 
-            Statement statement = connection.createStatement();
-
-            sqlStatement = sqlStatement.trim();
-
-            if (sqlStatement.length() >= 6) {
-                String sqlType = sqlStatement.substring(0, 6);
-
-                if (sqlType.equalsIgnoreCase("select")) {
-                    ResultSet resultSet = statement.executeQuery(sqlStatement);
-                    sqlResult = SQLUtil.getHtmlTable(resultSet);
-                    resultSet.close();
-                } else {
-                    int i = statement.executeUpdate(sqlStatement);
-
-                    if (i == 0) { 
-                        sqlResult =
-                                "<p>The statement executed successfully.</p>";
-                    } else {
-                        sqlResult =
-                                "<p>The statement executed successfully.<br>"
-                                + i + " row(s) affected.</p>";
-                    }
-                }
+            if (i == 0) { 
+                sqlResult = "<p>The statement executed successfully.</p>";
+            } else {
+                sqlResult = "<p>The statement executed successfully.<br>"
+                        + i + " row(s) affected.</p>";
             }
-
-            statement.close();
-            connection.close();
-
-        } catch (ClassNotFoundException e) {
-            sqlResult = "<p>Error loading the database driver:<br>"
-                    + e.getMessage() + "</p>";
-        } catch (SQLException e) {
-            sqlResult = "<p>Error executing the SQL statement:<br>"
-                    + e.getMessage() + "</p>";
         }
+    }
+
+    statement.close();
+    pool.freeConnection(connection);
+
+} catch (SQLException e) {
+    sqlResult = "<p>Error executing the SQL statement:<br>"
+               + e.getMessage() + "</p>";
+}
+
 
         // save to session
         HttpSession session = request.getSession();
