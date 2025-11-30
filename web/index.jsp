@@ -12,7 +12,7 @@
 <body>
 
 <c:if test="${sqlStatement == null}">
-    <c:set var="sqlStatement" value="select * from User" />
+    <c:set var="sqlStatement" value="select * from users" />
 </c:if>
 
 <h1>The SQL Gateway</h1>

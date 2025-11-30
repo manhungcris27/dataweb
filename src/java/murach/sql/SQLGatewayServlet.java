@@ -17,9 +17,9 @@ public class SQLGatewayServlet extends HttpServlet {
         // Test kết nối MySQL
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/murach?useSSL=false&serverTimezone=UTC";
-            String user = "murach_user";
-            String pass = "sesame";
+            String url = "jdbc:mysql://interchange.proxy.rlwy.net:27214/railway?sslMode=REQUIRED";
+            String user = "root";
+            String pass = "KfhtRmkvgkWDGZEZaUOKxQmRffyJwwfk";
 
             Connection conn = DriverManager.getConnection(url, user, pass);
             System.out.println("Kết nối MySQL thành công!");
@@ -32,14 +32,14 @@ public class SQLGatewayServlet extends HttpServlet {
         String sqlStatement = request.getParameter("sqlStatement");
         String sqlResult = "";
 
-        try {
+            try {
             // Load JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Kết nối database
-            String dbURL = "jdbc:mysql://localhost:3306/murach?useSSL=false&serverTimezone=UTC";
-            String username = "murach_user";
-            String password = "sesame";
+            String dbURL = "jdbc:mysql://interchange.proxy.rlwy.net:27214/railway?sslMode=REQUIRED";
+            String username = "root";
+            String password = "KfhtRmkvgkWDGZEZaUOKxQmRffyJwwfk";
 
             Connection connection = DriverManager.getConnection(dbURL, username, password);
             Statement statement = connection.createStatement();
