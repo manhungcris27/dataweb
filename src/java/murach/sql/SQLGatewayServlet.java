@@ -5,7 +5,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import javax.servlet.annotation.WebServlet;
-import murach.data.ConnectionPool;
 
 @WebServlet("/sqlGateway")
 public class SQLGatewayServlet extends HttpServlet {
@@ -14,69 +13,76 @@ public class SQLGatewayServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
+        // Test kết nối MySQL
         try {
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    String url = "jdbc:mysql://localhost:3306/murach?useSSL=false&serverTimezone=UTC";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/murach?useSSL=false&serverTimezone=UTC";
+            String user = "murach_user";
+            String pass = "sesame";
 
+            Connection conn = DriverManager.getConnection(url, user, pass);
+            System.out.println("Kết nối MySQL thành công!");
+            conn.close();
 
-    String user = "murach_user";
-    String pass = "sesame";
-
-    Connection conn = DriverManager.getConnection(url, user, pass);
-    System.out.println("Kết nối MySQL thành công!");
-
-    conn.close();
-} catch (Exception e) {
-    e.printStackTrace();
-}
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         String sqlStatement = request.getParameter("sqlStatement");
         String sqlResult = "";
 
         try {
-    ConnectionPool pool = ConnectionPool.getInstance();
-    Connection connection = pool.getConnection();
+            // Load JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
-    Statement statement = connection.createStatement();
+            // Kết nối database
+            String dbURL = "jdbc:mysql://localhost:3306/murach?useSSL=false&serverTimezone=UTC";
+            String username = "murach_user";
+            String password = "sesame";
 
-    sqlStatement = sqlStatement.trim();
+            Connection connection = DriverManager.getConnection(dbURL, username, password);
+            Statement statement = connection.createStatement();
 
-    if (sqlStatement.length() >= 6) {
-        String sqlType = sqlStatement.substring(0, 6);
+            sqlStatement = sqlStatement.trim();
 
-        if (sqlType.equalsIgnoreCase("select")) {
-            ResultSet resultSet = statement.executeQuery(sqlStatement);
-            sqlResult = SQLUtil.getHtmlTable(resultSet);
-            resultSet.close();
-        } else {
-            int i = statement.executeUpdate(sqlStatement);
+            if (sqlStatement.length() >= 6) {
+                String sqlType = sqlStatement.substring(0, 6);
 
-            if (i == 0) { 
-                sqlResult = "<p>The statement executed successfully.</p>";
-            } else {
-                sqlResult = "<p>The statement executed successfully.<br>"
-                        + i + " row(s) affected.</p>";
+                if (sqlType.equalsIgnoreCase("select")) {
+                    ResultSet resultSet = statement.executeQuery(sqlStatement);
+                    sqlResult = SQLUtil.getHtmlTable(resultSet);
+                    resultSet.close();
+                } else {
+                    int i = statement.executeUpdate(sqlStatement);
+
+                    if (i == 0) {
+                        sqlResult = "<p>The statement executed successfully.</p>";
+                    } else {
+                        sqlResult = "<p>The statement executed successfully.<br>"
+                                + i + " row(s) affected.</p>";
+                    }
+                }
             }
+
+            statement.close();
+            connection.close();
+
+        } catch (ClassNotFoundException e) {
+            sqlResult = "<p>Error loading the database driver:<br>"
+                    + e.getMessage() + "</p>";
+
+        } catch (SQLException e) {
+            sqlResult = "<p>Error executing the SQL statement:<br>"
+                    + e.getMessage() + "</p>";
         }
-    }
 
-    statement.close();
-    pool.freeConnection(connection);
-
-} catch (SQLException e) {
-    sqlResult = "<p>Error executing the SQL statement:<br>"
-               + e.getMessage() + "</p>";
-}
-
-
-        // save to session
+        // Lưu vào session
         HttpSession session = request.getSession();
         session.setAttribute("sqlResult", sqlResult);
         session.setAttribute("sqlStatement", sqlStatement);
 
+        // Chuyển về index.jsp
         getServletContext()
                 .getRequestDispatcher("/index.jsp")
                 .forward(request, response);
