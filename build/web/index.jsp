@@ -1,35 +1,37 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Murach's Java Servlets and JSP</title>
-<link rel="stylesheet" href="styles/main.css" type="text/css"/>
+    <meta charset="UTF-8">
+    <title>Murach's Java Servlets and JSP</title>
+    <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 </head>
-
 <body>
 
-<c:if test="${sqlStatement == null}">
-    <c:set var="sqlStatement" value="select * from users" />
-</c:if>
+<jsp:include page="/includes/header.jsp" />
 
-<h1>The SQL Gateway</h1>
+<h1>Join our email list</h1>
 
-<p>Enter an SQL statement and click the Execute button.</p>
+<p>To join our email list, enter your name and email address below.</p>
 
-<p><b>SQL statement:</b></p>
+<p><i><c:out value="${message}" /></i></p>
 
-<form action="sqlGateway" method="post">
-    <textarea name="sqlStatement" cols="60" rows="8">${sqlStatement}</textarea>
-    <br><br>
-    <input type="submit" value="Execute">
+<form action="emailList" method="post">
+    <input type="hidden" name="action" value="add" />
+
+    <label class="pad_top">Email:</label>
+    <input type="email" name="email" value="${user.email}" required /><br>
+
+    <label class="pad_top">First Name:</label>
+    <input type="text" name="firstName" value="${user.firstName}" required /><br>
+
+    <label class="pad_top">Last Name:</label>
+    <input type="text" name="lastName" value="${user.lastName}" required /><br>
+
+    <label>&nbsp;</label>
+    <input type="submit" value="Join Now" class="margin_left" />
 </form>
-
-<p><b>SQL result:</b></p>
-
-${sqlResult}
 
 </body>
 </html>

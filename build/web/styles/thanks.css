@@ -1,0 +1,81 @@
+/* Reset cơ bản */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e8f0f8;  /* tông lạnh, nhạt */
+    color: #2a3f54;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Tiêu đề */
+h1 {
+    text-align: center;
+    color: #1f4e79; /* xanh đậm lạnh */
+    margin-bottom: 20px;
+}
+
+/* Chú thích */
+p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Form */
+form {
+    background-color: #f0f4f8;
+    padding: 20px;
+    width: 700px;
+    margin: 0 auto 30px auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Textarea */
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    border: 1px solid #b0c4de;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #2a3f54;
+    outline: none;
+    resize: vertical;
+}
+
+textarea:focus {
+    border-color: #1f4e79;
+    box-shadow: 0 0 5px rgba(31, 78, 121, 0.5);
+}
+
+/* Nút Execute */
+input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    background-color: #1f4e79;  /* xanh lạnh */
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #173d61;
+}
+
+/* SQL Result */
+.sql-result {
+    background-color: #f0f4f8;
+    padding: 15px;
+    width: 700px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+    font-family: monospace;
+    font-size: 13px;
+    color: #1a2e44;
+    overflow-x: auto;
+}

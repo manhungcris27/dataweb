@@ -3,8 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/web/index.jsp</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/web/thanks.jsp</file>
             <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/src/java/murach/sql/SQLGatewayServlet.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/src/java/murach/data/ConnectionPool.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/src/java/murach/business/User.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/src/java/murach/sql/SQLUtil.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/src/java/murach/data/UserDB.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/src/java/murach/data/DBUtil.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/src/java/murach/email/EmailListServlet.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/web/index.jsp</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb/web/emailThanks.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -8,6 +8,14 @@ import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/sqlGateway")
 public class SQLGatewayServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String url = "/thanks.jsp";
+        getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -84,7 +92,7 @@ public class SQLGatewayServlet extends HttpServlet {
 
         // Chuyển về index.jsp
         getServletContext()
-                .getRequestDispatcher("/index.jsp")
+                .getRequestDispatcher("/thanks.jsp")
                 .forward(request, response);
     }
 }
