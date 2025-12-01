@@ -5,17 +5,13 @@
         name="jdbc/murach"
         auth="Container"
         type="javax.sql.DataSource"
-        
-        username="murach_user"
-        password="sesame"
-
+        username="root"
+        password="KfhtRmkvgkWDGZEZaUOKxQmRffyJwwfk"
         driverClassName="com.mysql.cj.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/murach?autoReconnect=true&amp;useSSL=false&amp;serverTimezone=UTC"
-
+        url="jdbc:mysql://interchange.proxy.rlwy.net:27214/railway?sslMode=REQUIRED"
         maxTotal="100"
         maxIdle="30"
         maxWaitMillis="10000"
-
         logAbandoned="true"
         removeAbandonedOnBorrow="true"
         removeAbandonedTimeout="60"
