@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/dataweb_mail">
+  <Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" logAbandoned="true" maxIdle="30" maxTotal="100" maxWaitMillis="10000" name="jdbc/murach" password="KfhtRmkvgkWDGZEZaUOKxQmRffyJwwfk" removeAbandonedOnBorrow="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mysql://interchange.proxy.rlwy.net:27214/railway?sslMode=REQUIRED" username="root"/>
+</Context>

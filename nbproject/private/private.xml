@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb-email/dataweb-main/src/java/murach/util/MailUtilLocal.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb-email/dataweb-main/src/java/murach/email/EmailListServlet.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb-email/dataweb-main/src/java/murach/util/MailUtilGmail.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb-email/dataweb-main/src/java/murach/sql/SQLGatewayServlet.java</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb-email/dataweb-main/web/emailThanks.jsp</file>
+            <file>file:/D:/UNIVERSITY/ki1_nam3/laptrinhweb/dataweb-email/dataweb-main/src/java/murach/data/ConnectionPool.java</file>
+        </group>
+    </open-files>
+</project-private>
